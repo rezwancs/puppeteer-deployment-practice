@@ -13,23 +13,18 @@ app.get("/screenshot", async (req, res) => {
 
   console.log("getting screenshots for ", url);
 
-  let browser;
   try {
-    if (process.env.VERCEL) {
-      browser = await puppeteer.launch({
-        args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath(),
-        headless: chromium.headless,
-      });
-    } else {
-      browser = await puppeteer.launch({
+    const browser  = await puppeteer.launch({
         headless: true,
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
       });
-    }
 
     const page = await browser.newPage();
+    await page.setViewport({
+      width: 1920,
+      height: 1080,
+      deviceScaleFactor: 1,
+    });
     await page.goto(url, { waitUntil: "networkidle2" });
     const screenshot = await page.screenshot({ fullPage: true });
     await browser.close();
@@ -41,6 +36,10 @@ app.get("/screenshot", async (req, res) => {
     res.status(500).send("Error capturing screenshot");
   }
 });
+
+app.get('/', (req,res)=>{
+  res.send('hello')
+})
 
 app.listen(port, (err) => {
   if (err) {
