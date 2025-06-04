@@ -11,6 +11,8 @@ app.get("/screenshot", async (req, res) => {
     return res.status(400).send("Missing URL");
   }
 
+  console.log("getting screenshots for ", url);
+
   let browser;
   try {
     if (process.env.VERCEL) {
