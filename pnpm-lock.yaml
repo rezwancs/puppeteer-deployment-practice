@@ -8,10 +8,16 @@ importers:
 
   .:
     dependencies:
+      '@sparticuz/chromium':
+        specifier: ^133.0.0
+        version: 133.0.0
       express:
         specifier: ^5.1.0
         version: 5.1.0
       puppeteer:
+        specifier: ^24.10.0
+        version: 24.10.0
+      puppeteer-core:
         specifier: ^24.10.0
         version: 24.10.0
       tsx:
@@ -182,6 +188,10 @@ packages:
     resolution: {integrity: sha512-eifa0o+i8dERnngJwKrfp3dEq7ia5XFyoqB17S4gK8GhsQE4/P8nxOfQSE0zQHxzzLo/cmF+7+ywEQ7wK7Fb+w==}
     engines: {node: '>=18'}
     hasBin: true
+
+  '@sparticuz/chromium@133.0.0':
+    resolution: {integrity: sha512-wioNxMtSxRI+Y6ymc/UFPX9lY7A1SDgBezjFITH6arwe5CONfWosNDGpgflUGYajxxGktb1k3kjJ83jWzbccBw==}
+    engines: {node: '>= 16'}
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
@@ -428,6 +438,15 @@ packages:
   finalhandler@2.1.0:
     resolution: {integrity: sha512-/t88Ty3d5JWQbWYgaOGCCYfXRwV1+be02WqYYlL6h0lEiUAMPM8o8qKGO01YIkOHzka2up08wvgYD0mDiI+q3Q==}
     engines: {node: '>= 0.8'}
+
+  follow-redirects@1.15.9:
+    resolution: {integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
 
   forwarded@0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
@@ -916,6 +935,14 @@ snapshots:
       - bare-buffer
       - supports-color
 
+  '@sparticuz/chromium@133.0.0':
+    dependencies:
+      follow-redirects: 1.15.9
+      tar-fs: 3.0.9
+    transitivePeerDependencies:
+      - bare-buffer
+      - debug
+
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
   '@types/node@22.15.29':
@@ -1193,6 +1220,8 @@ snapshots:
       statuses: 2.0.1
     transitivePeerDependencies:
       - supports-color
+
+  follow-redirects@1.15.9: {}
 
   forwarded@0.2.0: {}
 
